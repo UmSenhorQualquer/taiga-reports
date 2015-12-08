@@ -2,7 +2,6 @@ import time, pickle, os
 from datetime import datetime
 from taiga_stats import tools
 from matplotlib import pyplot as plt
-from settings import TAGS_PRIORITIES, USER_WORKING_DAYS
 
 class UserStats(object):
 	"""
@@ -10,21 +9,22 @@ class UserStats(object):
 	"""
 
 	def __init__(self, api, user_id, story_is_closed='false', 
-		stories_status=[], tags=[]):
+		stories_status=[], tags_priorities=[], working_days=None):
 		self.user_id = user_id					#User id
 		self.user 	 = api.users.get(user_id)	#Taiga API user model
 		self.api 	 = api 						#Taiga API object
-
-
-		self.calculate_stats(story_is_closed, stories_status, tags)
+		self.working_days = working_days if working_days else tools.default_working_days()
+		
+		self.calculate_stats(story_is_closed, stories_status, tags_priorities)
 
 	def calculate_stats(self, 
 			story_is_closed='false', 
-			stories_status=[], tags=[],
+			stories_status=[], tags_priorities=[],
 			filter_by_status=None):
 		"""
 		Retrieve the user data and calculate some stats
 		"""
+		self.tags_priorities = tags_priorities
 		self.total_points  		= 0				 #Total points the user has allocated to him
 		self.total_stories 		= 0				 #Total number of stories the user has allocated to him
 		self.stories_projects 	= []			 #List of the stories projects
@@ -35,6 +35,8 @@ class UserStats(object):
 
 		self.stories_status_count  = {} #Status stats
 		self.stories_status_points = {} #Status stats
+
+		tags = [tag for tag, priority in self.tags_priorities]
 		
 		for t in self.api.user_stories.list(assigned_to=self.user_id, is_closed=story_is_closed): 
 			
@@ -100,6 +102,8 @@ class UserStats(object):
 		"""
 		Save the object to a folder
 		"""
+		if not os.path.exists(folder): os.makedirs(folder)
+
 		timename = time.strftime("%Y%m%d-%H%M%S")
 		filename = os.path.join(folder, "{0}-{1}.dat".format(self.user.id,timename) )
 		with open(filename,'wb') as outfile: pickle.dump(self, outfile)
@@ -112,7 +116,7 @@ class UserStats(object):
 		"""
 		times 		= [] #List of working days
 		tags_points = {} 
-		tags 		= [tag for tag, priority in sorted(TAGS_PRIORITIES,key=lambda x:x[1]) if tag in self.tags_points.keys()]
+		tags 		= [tag for tag, priority in sorted(self.tags_priorities,key=lambda x:x[1]) if tag in self.tags_points.keys()]
 		tags.append('no-tags')
 		total_pts = {}
 		points_sum = 0
@@ -124,8 +128,8 @@ class UserStats(object):
 
 		#Iterates each working day until the number of points remaining 
 		#is lower than the number of working hours per day
-		working_days = USER_WORKING_DAYS.get(self.user_id, tools.default_working_days() )
-		for date in working_days:
+		
+		for date in self.working_days:
 			times.append(date)
 
 			for tag in tags:
@@ -153,11 +157,13 @@ class UserStats(object):
 		"""
 		Generates a graph with the workload vs next working days
 		"""
+		folder = os.path.dirname(filename)
+		if not os.path.exists(folder): os.makedirs(folder)
 
 		times, tags_points = self.next_days_workload(hours_per_day)
 
 		tags =  ['no-tags']
-		tags += [tag for tag, priority in sorted(TAGS_PRIORITIES,key=lambda x:-x[1]) if tag in self.tags_points.keys()]
+		tags += [tag for tag, priority in sorted(self.tags_priorities,key=lambda x:-x[1]) if tag in self.tags_points.keys()]
 		
 		values = []
 
@@ -209,13 +215,12 @@ class UserStats(object):
 			out+= "|--------------------------------------------------------|\n"
 			out+= "|               Available for priority on                |\n"
 			out+= "|--------------------------------------------------------|\n"
-			tags = [tag for tag, priority in sorted(TAGS_PRIORITIES,key=lambda x:x[1]) if tag in tags_points.keys()]
+			tags = [tag for tag, priority in sorted(self.tags_priorities,key=lambda x:x[1]) if tag in tags_points.keys()]
 			tags.append('no-tags')
 		
 			for tagname in tags:
 				out += '| '
 				out += tagname.ljust(25)
-				print len(tags_points[tagname]), times, tags_points[tagname]
 				available_date = times[len(tags_points[tagname])-1]
 				out += available_date.strftime("%d-%m-%Y").ljust(30)
 				out += '|\n'

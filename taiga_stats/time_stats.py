@@ -92,6 +92,8 @@ class TimeStats(object):
 		
 
 	def export_members_stats_graphs(self, folder):
+		if not os.path.exists(folder): os.makedirs(folder)
+
 		filename = os.path.join(folder, 'total_points_over_time.png')
 		tools.export_graph(filename, self.calc_points_overtime_stats(), title='Points over time')
 
@@ -103,6 +105,8 @@ class TimeStats(object):
 
 
 	def export_tags_counts_graphs(self, folder):
+		if not os.path.exists(folder): os.makedirs(folder)
+
 		times, tags = self.__calculate_tags_counts()
 
 		for username in times.keys():
@@ -117,6 +121,8 @@ class TimeStats(object):
 				tools.export_graph( filename, values, title='Tags counts for {0}'.format(username) )
 
 	def export_tags_points_graphs(self, folder):
+		if not os.path.exists(folder): os.makedirs(folder)
+
 		times, tags = self.__calculate_tags_points()
 
 		for username in times.keys():
@@ -161,6 +167,8 @@ class TimeStats(object):
 		return times, counts
 
 	def export_status_counts_graphs(self, folder):
+		if not os.path.exists(folder): os.makedirs(folder)
+
 		times, counts = self.__calculate_status_counts()
 
 		for username in times.keys():
@@ -176,6 +184,7 @@ class TimeStats(object):
 
 	
 	def __calculate_status_points(self):
+		
 		times  = {}
 		points = {}
 		for user_stats in self._users_stats:
@@ -194,6 +203,8 @@ class TimeStats(object):
 
 
 	def export_status_points_graphs(self, folder):
+		if not os.path.exists(folder): os.makedirs(folder)
+
 		times, points = self.__calculate_status_points()
 
 		for username in times.keys():

@@ -4,7 +4,7 @@ class TeamStats(object):
 
 	def __init__(self, api, team_users, 
 		story_is_closed='false', 
-		stories_status=[], tags=[]):
+		stories_status=[], tags_priorities=[]):
 		"""
 		Calculate team stats
 		"""
@@ -16,7 +16,7 @@ class TeamStats(object):
 			user_stats = UserStats(api, user_id, 
 				story_is_closed=story_is_closed,
 				stories_status=stories_status,
-				tags=tags)
+				tags_priorities=tags_priorities)
 			self.users_stats.append(user_stats)
 
 

@@ -12,9 +12,9 @@ out_file_path = os.path.join('data', output_filename)
 
 team_stats = TeamStats(api, TEAM, 
 	stories_status=['New', 'Ready', 'In progress', 'Ready for test'],
-	tags=[tag for tag, _ in TAGS_PRIORITIES])
+	tags_priorities=TAGS_PRIORITIES)
 
 #print team_stats
 print team_stats.not_assigned_stories()
 
-#team_stats.dump_to_folder('data')
+team_stats.dump_to_folder('../data')

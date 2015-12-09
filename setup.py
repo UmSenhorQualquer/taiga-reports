@@ -14,7 +14,7 @@ from setuptools import setup
 
 setup(
 	name				='Taiga reports',
-	version 			='0.0',
+	version 			='0.01',
 	description 		="""The library provide reports for taiga.io projects""",
 	author  			='Ricardo Ribeiro',
 	author_email		='ricardojvr@gmail.com',

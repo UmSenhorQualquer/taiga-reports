@@ -7,7 +7,7 @@ from taiga_reports.user_stats import UserStats
 api = TaigaAPI()
 api.auth(username=USER, password=PASS)
 
-user_stats = UserStats(api, TEAM[2], 
+user_stats = UserStats(api, TEAM[0], 
 	stories_status=['New', 'Ready', 'In progress', 'Ready for test'],
 	tags_priorities=TAGS_PRIORITIES)
 

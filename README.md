@@ -1,6 +1,10 @@
 # Taiga reports
 
-The generates reports for taiga.io
+The generates reports for taiga.io:
+- General developers team stats.
+- Workload for the next days for each user.
+- Stories with no assigned users.
+- Progression graphs for each user, for each priority type and stories status.
 
 ## Workload prediction for the next days
 

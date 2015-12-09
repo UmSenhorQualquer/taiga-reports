@@ -213,7 +213,7 @@ class UserStats(object):
 		times, tags_points = self.next_days_workload(8)
 		if len(times)>0:
 			out+= "|--------------------------------------------------------|\n"
-			out+= "|               Available for priority on                |\n"
+			out+= "|               Available on for stories                 |\n"
 			out+= "|--------------------------------------------------------|\n"
 			tags = [tag for tag, priority in sorted(self.tags_priorities,key=lambda x:x[1]) if tag in tags_points.keys()]
 			tags.append('no-tags')

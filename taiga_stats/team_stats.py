@@ -37,7 +37,18 @@ class TeamStats(object):
 		return not_assigned
 		
 
+	def print_not_assigned_stories(self):
+		not_assigned = self.not_assigned_stories()
 
+		print('='*80)
+		print('| NOT ASSIGNED STORIES'.ljust(79)+'|')
+		print('='*80)
+		print('| Project'.ljust(40) + ' | ' + 'Story'.ljust(35) + ' |' )
+		print('|'+'-'*78+'|')
+		for project, story in not_assigned:
+			print('| ' +project.name.ljust(38) + ' | ' + story.subject.ljust(35) + ' |' )
+		print('='*80)
+		
 
 
 

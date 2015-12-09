@@ -2,6 +2,12 @@
 
 The generates stats and graphs for taiga.io
 
+## Workload prediction for the next days
+
+![Prediction example](graphs/workload_for_the_next_days.png?raw=true "Screen")
+
+## Stats example
+
 ```bash
 ==========================================================
 | Team stats                                             |
@@ -19,22 +25,6 @@ The generates stats and graphs for taiga.io
 |                     Stories status                     |
 |--------------------------------------------------------|
 | New                 points: 113.0     | count: 17      |
-==========================================================
-
-==========================================================
-| Stats for: cajomferro                                  |
-==========================================================
-| Total points:		0                                    |
-| Total stories:	0                                    |
-| Total projects:	0                                    |
-|--------------------------------------------------------|
-|                       Tags stats                       |
-|--------------------------------------------------------|
-| no-tags             points: 0         | count: 0       |
-|--------------------------------------------------------|
-|               Available on for stories                 |
-|--------------------------------------------------------|
-| no-tags                  09-12-2015                    |
 ==========================================================
 
 ==========================================================
@@ -90,5 +80,4 @@ The generates stats and graphs for taiga.io
 | Maintenance - study.earcs.pt           | Review the backups                  |
 | PyControl                              | teste                               |
 ================================================================================
-[Finished in 21.9s]
 ```

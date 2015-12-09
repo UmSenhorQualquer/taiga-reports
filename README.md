@@ -38,7 +38,7 @@ The generates reports for taiga.io:
 ==========================================================
 
 ==========================================================
-| Stats for: Nuno Dias Martins                           |
+| Stats for: XXXX XXXXX XXXXXXX                          |
 ==========================================================
 | Total points:		68.0                                 |
 | Total stories:	14                                   |

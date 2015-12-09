@@ -1,6 +1,6 @@
-# Taiga stats
+# Taiga reports
 
-The generates stats and graphs for taiga.io
+The generates reports for taiga.io
 
 ## Workload prediction for the next days
 

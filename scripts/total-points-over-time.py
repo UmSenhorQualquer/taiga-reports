@@ -1,4 +1,4 @@
-from taiga_stats.time_stats import TimeStats
+from taiga_reports.time_stats import TimeStats
 
 
 stats = TimeStats('../data')

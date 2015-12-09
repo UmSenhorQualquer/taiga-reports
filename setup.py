@@ -13,11 +13,11 @@ __status__      = "Development"
 from setuptools import setup
 
 setup(
-	name				='Taiga stats',
+	name				='Taiga reports',
 	version 			='0.0',
-	description 		="""The library provide stats for taiga.io project""",
+	description 		="""The library provide reports for taiga.io projects""",
 	author  			='Ricardo Ribeiro',
 	author_email		='ricardojvr@gmail.com',
 	license 			='MIT',
-	packages			=['taiga_stats',],
+	packages			=['taiga_reports',],
 )

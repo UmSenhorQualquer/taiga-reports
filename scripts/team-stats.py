@@ -2,7 +2,7 @@ import os
 from taiga import TaigaAPI
 from settings import USER, PASS, TEAM, TAGS_PRIORITIES
 from datetime import date
-from taiga_stats.team_stats import TeamStats
+from taiga_reports.team_stats import TeamStats
 
 api = TaigaAPI()
 api.auth(username=USER, password=PASS)

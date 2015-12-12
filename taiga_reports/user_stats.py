@@ -157,9 +157,7 @@ class UserStats(object):
 		"""
 		Generates a graph with the workload vs next working days
 		"""
-		folder = os.path.dirname(filename)
-		if not os.path.exists(folder): os.makedirs(folder)
-
+		
 		times, tags_points = self.next_days_workload(hours_per_day)
 
 		tags =  ['']

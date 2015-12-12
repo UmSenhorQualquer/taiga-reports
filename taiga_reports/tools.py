@@ -24,10 +24,10 @@ def generate_graph(values, title=None, fill=False):
 				plt.stackplot(xs, ys, colors=color, alpha=0.4)
 				plt.plot(xs, ys, color=color[0], alpha=0.9, linewidth=1.5, label=label)
 			else:
-				plt.plot(xs, ys, alpha=0.3,marker='o', color=color[0], label=label)
+				plt.plot(xs, ys, alpha=0.8,marker='o', color=color[0], label=label)
 
 	fig.autofmt_xdate()
-	plt.legend(loc=9, bbox_to_anchor=(0.5,0))
+	plt.legend(loc=2)
 	plt.grid(True)
 
 	

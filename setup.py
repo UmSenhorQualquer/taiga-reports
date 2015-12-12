@@ -19,5 +19,5 @@ setup(
 	author  			='Ricardo Ribeiro',
 	author_email		='ricardojvr@gmail.com',
 	license 			='MIT',
-	packages			=['taiga_reports',],
+	packages			=['taiga_reports','taiga_reports.models'],
 )

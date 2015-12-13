@@ -4,8 +4,8 @@ The generates reports for taiga.io:
 - Generats stats for developers individually or for a team:
 	- Number of stories per tag.
 	- Total points per tag.
-	- Number of stories per story status.
-	- Total points per story status.
+	- Number of stories per status.
+	- Total points per status.
 - Workload for the next days for each user.
 - Stories with no assigned users.
 - Progression graphs by tags and stories status.
@@ -14,7 +14,11 @@ The generates reports for taiga.io:
 
 ### Workload for the next days
 
-![Prediction example](graphs/workload_for_the_next_days.png?raw=true "Screen")
+![status_counts](docs/imgs/status_counts.png?raw=true "Screen")
+![status_points](docs/imgs/status_points.png?raw=true "Screen")
+![tags_counts](docs/imgs/tags_counts.png?raw=true "Screen")
+![tags_points](docs/imgs/tags_points.png?raw=true "Screen")
+![workload](docs/imgs/workload.png?raw=true "Screen")
 
 ### Stats example
 
@@ -81,14 +85,5 @@ The generates reports for taiga.io:
 | no-tags                  31-12-2015                    |
 ==========================================================
 
-
-================================================================================
-| NOT ASSIGNED STORIES                                                         |
-================================================================================
-| Project                                | Story                               |
-|------------------------------------------------------------------------------|
-| Maintenance - study.earcs.pt           | Review the backups                  |
-| PyControl                              | teste                               |
-================================================================================
 ```
 

@@ -4,7 +4,7 @@ from dateutil import parser
 from taiga_reports.models.project import Project
 from taiga_reports.models.user_story import UserStory
 from taiga_reports.models.status import Status
-from taiga_reports.moment import Moment
+from taiga_reports.snapshot import Snapshot
 from taiga_reports.user_report import UserReport
 
 class Report(object):
@@ -14,7 +14,7 @@ class Report(object):
 		self._reports = []
 
 		for directory in directories:
-			report = Moment(directory)
+			report = Snapshot(directory)
 			self._reports.append(report)
 
 		self._reports = sorted(self._reports, key=lambda x: x._datetime)
@@ -22,11 +22,11 @@ class Report(object):
 
 	def __save_graph(self, filename, function, closed, title=None, user_id=None):
 		xs, ys_vals = [], {}
-		for moment in self._reports:
-			if user_id: moment = UserReport(user_id, moment)
+		for snap in self._reports:
+			if user_id: snap = UserReport(user_id, snap)
 
-			xs.append( moment._datetime )
-			values = getattr(moment, function)(not closed)
+			xs.append( snap._datetime )
+			values = getattr(snap, function)(not closed)
 			for key, val in values.items():
 				if key not in ys_vals.keys(): ys_vals[key]=[]
 				ys_vals[key].append(val)
@@ -49,4 +49,4 @@ class Report(object):
 	
 
 	@property
-	def last_moment(self): return self._reports[-1]
+	def last_snapshot(self): return self._reports[-1]
